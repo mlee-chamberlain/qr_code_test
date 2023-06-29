@@ -41,10 +41,10 @@ def generate_matrices(qr_codes):
         
     return matrix_list                                       # Return matrix list to variable 'matrices'
 
-# This function overwrites an existing text file with the contents of the matrices or creates a new file if it does not exist.
+# This function overwrites an existing text file with the contents of the matrices or creates a new file in the parent folder of the repository if it does not exist.
 # The function takes the list of matrices as a parameter.
 def file_write(matrix_list):
-    output = open("qr_code_parsed.txt", 'w')
+    output = open("../qr_code_parsed.txt", 'w')
     for idx in range(len(matrix_list)):
         output.write("V" + str(idx + 3) + " MATRIX: \n")
         output.writelines(matrix_list[idx])

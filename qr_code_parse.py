@@ -1,5 +1,5 @@
-#  Authors: David Bixler, Jared Tarantino, Matthew Lee 
-#  Written for Chamberlain Group LCD Display QR Code Testing
+# Authors: David Bixler, Jared Tarantino, Matthew Lee 
+# Written for Chamberlain Group LCD Display QR Code Testing
 
 # Purpose:
 # This script generates the matrices for the 5 displayable QR code versions (v3, v4, v5, v6, v7) generated from the excel workbook "qr_code.xlsx." 

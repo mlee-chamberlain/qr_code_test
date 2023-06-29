@@ -1,5 +1,5 @@
-# Authors: David Bixler, Jared Tarantino, Matthew Lee 
-# Written for Chamberlain Group LCD Display QR Code Testing
+#  Authors: David Bixler, Jared Tarantino, Matthew Lee 
+#  Written for Chamberlain Group LCD Display QR Code Testing
 
 # Purpose:
 # This script generates the matrices for the 5 displayable QR code versions (v3, v4, v5, v6, v7) generated from the excel workbook "qr_code.xlsx." 
@@ -33,8 +33,11 @@ def generate_matrices(qr_codes):
             count += 1                                       # Increment count
             if count % 45 == 0:                              # Append newline after 45 columns
                 matrix.append('\n')
-                
-        matrix_list.append(matrix)                           # Append matrix to matrix list
+        
+        # Remove comma from last entry in each matrix and remove trailing newline character before appending matrix to matrix list
+        matrix[len(matrix) - 2] = matrix[len(matrix) - 2][:len(matrix[len(matrix) - 2]) - 2]
+        matrix[len(matrix) - 1] = '\0'
+        matrix_list.append(matrix)                           
         
     return matrix_list                                       # Return matrix list to variable 'matrices'
 

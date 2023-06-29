@@ -1,3 +1,11 @@
+#  Authors: David Bixler, Jared Tarantino, Matthew Lee 
+#  Written for Chamberlain Group LCD Display QR Code Testing
+
+# Purpose:
+# This script generates 5 displayable QR codes of differing versions (v3, v4, v5, v6, v7) generated from a given URL.
+# It also generates the binary data of these QR codes in Excel files and produces a text file for each QR code version that
+# a string that can be used as the argument for the function call in the C code (lcd_font_4_22.c).
+
 import qrcode
 import sys
 import os
@@ -11,6 +19,8 @@ def main():
 
     url = sys.argv[1]
     parentDirName = sys.argv[2]
+
+    #Creates a parent folder with the provided folder name
     try:
         parentDir = os.mkdir("../" + parentDirName)
     except OSError as error: 
@@ -20,6 +30,7 @@ def main():
         #Make new directory to store generated files pertaining to this QR version
         currPath = "../" + parentDirName + "/qr-v" + str(curr_version)
         
+        #Creates a sub folder within the parent folder that will contain all generated files for the corresponding QR version
         try:
             currDir = os.mkdir(currPath)
         except OSError as error: 
@@ -52,11 +63,13 @@ def main():
         else:
             print("ERROR")
 
+        #Inverts the produced binary data and processes it to work with the Excel spreadsheet
         df = pd.DataFrame(binary_qrcode).T
         df = df.replace(0, 1)
         df = df.replace(255, 0)
         df.to_excel(excel_writer=currPath + "/qr-v" + str(curr_version) + ".xlsx")
 
+        #Generates C code argument string
         processed_data = df.values.T.tolist()
 
         num_cols = 45

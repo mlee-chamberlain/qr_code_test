@@ -41,11 +41,13 @@ def generate_matrices(qr_codes):
 # This function overwrites an existing text file with the contents of the matrices or creates a new file if it does not exist.
 # The function takes the list of matrices as a parameter.
 def file_write(matrix_list):
-    output = open("qr_code_parsed.txt", 'w')                 # Open text file if it exists and overwrite file contents
-    for idx in range(len(matrix_list)):                      # Iterate through matrices
-        output.write("V" + str(idx + 3) + " MATRIX: \n")     # Add QR code version header
-        output.writelines(matrix_list[idx])                  # Write the list content of the current matrix to the file
-        output.write('\n\n\n')                               # Write newlines to the file to separate version matrices
+    output = open("qr_code_parsed.txt", 'w')
+    for idx in range(len(matrix_list)):
+        output.write("V" + str(idx + 3) + " MATRIX: \n")
+        output.writelines(matrix_list[idx])
+        
+        if idx != len(matrix_list) - 1:
+            output.write('\n\n\n')
     
     output.close()
 

@@ -59,8 +59,11 @@ def main():
     # and write output to file 'qr_code_parsed.txt'.
     excel = "qr_code.xlsx"
     if len(sys.argv) == 2:
-        excel = str(sys.argv[1] + '.xlsx')
-        
+        if (sys.argv[1][len(sys.argv[1])-4:]) == 'xlsx':            # Use full filename if included
+            excel = str(sys.argv[1])
+        else:
+            excel = str(sys.argv[1] + '.xlsx')                      # Append 'xlsx' to file name if not included
+     
     qr_codes = pd.read_excel(excel)       
     matrices = generate_matrices(qr_codes) 
     file_write(matrices)

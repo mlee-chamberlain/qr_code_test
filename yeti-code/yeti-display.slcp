@@ -1,0 +1,41 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: yeti-display
+label: yeti-display
+description: |
+  This example project shows an empty configuration that can be used as a starting point to add components and functionality.
+category: Example|Platform
+package: platform
+quality: production
+source:
+- {path: app.c}
+- {path: main.c}
+include:
+- path: ''
+  file_list:
+  - {path: app.h}
+sdk: {id: gecko_sdk, version: 4.0.2}
+toolchain_settings: []
+component:
+- {id: emlib_i2c}
+- instance: [debug_uart]
+  id: uartdrv_usart
+- {id: sl_system}
+- instance: [3pbs_close, 3pbs_loop, 3pbs_open, 3pbs_stop]
+  id: simple_button
+- instance: [powered_uart]
+  id: uartdrv_eusart
+- {id: emlib_wdog}
+- instance: [pwm_buzzer]
+  id: pwm
+- instance: [eeprom_i2c]
+  id: i2cspm
+- instance: [lcd_backlight, lcd_reset, led_d10]
+  id: simple_led
+- {id: device_init}
+- instance: [lcd_spi]
+  id: spidrv
+- {id: EFM32PG22C200F64IM40}
+define:
+- {name: DEBUG_EFM}
+ui_hints: {}
+

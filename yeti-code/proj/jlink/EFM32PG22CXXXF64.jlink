@@ -1,0 +1,8 @@
+r
+g
+loadbin ./build/yeti-display.bin 0x0
+;loadbin "./GNU ARM v10.3.1 - Debug/yeti-display.bin" 0x0
+r
+g
+
+exit

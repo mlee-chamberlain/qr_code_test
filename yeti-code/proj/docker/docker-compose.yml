@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  L6DisplayDockerService:               #  called from the yml invocation.
+    image: yetigecko:1.2                #  the image name, reused if already made; may be based upon an existing.
+    build: .
+    user: ${UID}:${GID}                 # set the user of this container, does not have to be root.
+    volumes:
+      - ../../:/dirDockerProjAlias      # from here, top project directory is called this.  NOTE: this can change binary output.
+      - /etc/passwd:/etc/passwd:ro      # settings for the user.... three of them.
+      - /etc/group:/etc/group:ro        #
+      - /etc/shadow:/etc/shadow:ro      #
+      - /data/pclp/:/data/pclp          # this was in phoenix, not L6
+      - /tmp:/sonar-cache
+    working_dir: /dirDockerProjAlias    # as referenced above.
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
